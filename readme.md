@@ -39,6 +39,18 @@ kerl_deactivate
 ```
 
 
+### Compile and [make](http://erlang.org/doc/man/make.html#all-0) 
+
+```
+erl -make
+
+erl
+make:all()
+
+alias cerl='/home/eddy/Note/Magistrale/Magistrale/Distributed\ Systems/Project/Examples/erl_compile_all.sh'
+```
+
+
 ### IDE
 
 vscode extensions or [erlide](https://erlide.org/)
