@@ -51,7 +51,36 @@ alias cerl='/home/eddy/Note/Magistrale/Magistrale/Distributed\ Systems/Project/E
 ```
 
 
+### Code Path
+
+* [Issues on code path update](https://stackoverflow.com/questions/20570508/whats-the-difference-between-codeadd-path-and-using-pa-on-the-command-line)
+* [Code module](http://erlang.org/doc/man/code.html)
+
+```
+code:get_path().
+code:add_path("folder_path").
+code:add_path("./factorial").
+
+erl -pa ./factorial
+
+factorial:fac(3).     
+```
+
+
 ### IDE
 
 vscode extensions or [erlide](https://erlide.org/)
 
+
+### Resources
+
+* [Erlang for beguinners](https://www.tutorialspoint.com/erlang/erlang_modules.htm)
+
+
+## Docker
+
+```
+sudo docker search erlang
+sudo docker pull erlang
+sudo docker run -it erlang
+```
