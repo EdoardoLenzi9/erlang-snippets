@@ -75,7 +75,8 @@ vscode extensions or [erlide](https://erlide.org/)
 ### Resources
 
 * [Erlang for beguinners](https://www.tutorialspoint.com/erlang/erlang_modules.htm)
-
+* [OTP man](http://erlang.org/doc/man/)
+* [Mnesia distributed DBMS](http://erlang.org/doc/man/mnesia.html)
 
 ## Docker
 

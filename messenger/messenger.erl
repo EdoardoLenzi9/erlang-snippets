@@ -57,7 +57,7 @@
 
 
 -module(messenger).
--export([start_server/0, server/1, logon/1, logoff/0, message/2, client/2]).
+-export([start_server/0, server/1, logonA/0, logonB/0, logon/1, logoff/0, message/2, client/2]).
 
 
 %%% Start the server, entry point launches server([])
@@ -127,10 +127,19 @@ server_transfer(From, Name, To, Message, User_List) ->
 %%% Change the function below to return the name of the node where the
 %%% messenger server runs
 server_node() ->
-    messenger@super.
+    server@eddy.
 
 
 %%% User Commands
+
+logonA() ->
+    logon(a).
+
+
+logonB() ->
+    logon(b).
+
+
 logon(Name) ->
     case whereis(mess_client) of
         undefined ->
