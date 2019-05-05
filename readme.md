@@ -85,3 +85,18 @@ sudo docker search erlang
 sudo docker pull erlang
 sudo docker run -it erlang
 ```
+
+## Debugger
+
+* [rebar3](https://github.com/erlang/rebar3) build tool
+* [vscode extension](https://marketplace.visualstudio.com/items?itemName=pgourlain.erlang)
+
+```
+git clone https://github.com/erlang/rebar3.git
+cd rebar3
+./bootstrap
+./rebar3 local install
+
+alias rebar3='/home/eddy/App/kerl/rebar3/rebar3'
+alias rebar='/home/eddy/App/kerl/rebar3/rebar3'
+```

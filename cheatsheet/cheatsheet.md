@@ -91,6 +91,19 @@ alpha( #{alpha := SA}, #{alpha := DA} ) ->
     SA + DA * (1.0 - SA). 
 ```
 
+* **records** object like ds
+
+```{erl}
+%%% In an header file save the record definition
+-record(message_to,{to_name, message}). 
+
+#message_to{message="hello", to_name=fred}
+
+%%% For the pattern matching purpose use one of the following equivalent notations
+#message_to{message=Message, to_name=ToName} -> 
+{message_to, ToName, Message} 
+```
+
 
 ## Flow Control
 
@@ -179,6 +192,14 @@ Built in functions (ie. `trunc` is equivalent to `erlang:trunc`)
 
 ## Best Practices
 
+* Use header files `.hrl` for macros and record
+* functions defined in an header file don't need to be exported
+
+```{erl}
+-include("interface.hrl")
+```
+
+
 ### Tail recursion
 
 
@@ -228,6 +249,8 @@ receive
     {ping, Ping_PID} ->
         io:format("Pong received ping~n", []),
         Ping_PID ! pong,pong() 
+    after 5000 ->
+        io:format("Pong timed out~n", [])
 end. 
 ```
 
@@ -273,4 +296,29 @@ node()                      % get node name
 
 erl -sname ping 
 ping_pong:start_ping(node_name). 
+```
+
+
+<br/>
+----------------------------------
+# Robustness - Signals and linking
+
+In order to link two processes use `link` or `spawn_link` (**bidirectional** linking)
+in this way when a process `exit` a signal is sent to the other linked processes.
+
+* A process exit normally with `exit(normal)`
+* A process that encounter a **runtime error** has an **abnormal exit**
+* When a process terminates (normally or abnormally) a **signal** is send with {`PID` and `exit reasons`}
+
+By default a process ignores signals but can also:
+* Propagate
+* Kill the process
+* Bypass all messages to the receiving process
+
+> In this way we can create a **transaction**
+
+Use the records for the messages
+
+```{erl}
+    process_flag(trap_exit, true)   % Overrides default behaviour
 ```
