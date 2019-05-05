@@ -57,7 +57,7 @@
 
 
 -module(messenger).
--export([start_server/0, server/1, logonA/0, logonB/0, logon/1, logoff/0, message/2, client/2]).
+-export([server_node/0, start_server/0, server/1, logonA/0, logonB/0, logon/1, logoff/0, message/2, client/2]).
 
 
 %%% Start the server, entry point launches server([])
@@ -127,7 +127,9 @@ server_transfer(From, Name, To, Message, User_List) ->
 %%% Change the function below to return the name of the node where the
 %%% messenger server runs
 server_node() ->
-    server@eddy.
+    {ok, HostName} = inet:gethostname(),
+    %io:format("server@~w", [list_to_atom(HostName)]).
+    list_to_atom(lists:concat(["server@", HostName])). 
 
 
 %%% User Commands

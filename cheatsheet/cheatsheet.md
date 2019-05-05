@@ -68,6 +68,19 @@ Erlang
         [ {cape_town, {c, 10}}, {moscow, {c, 15}} ] ). 
 ```
 
+List of tuples have **keysomething** operations like:
+
+```
+    lists:keymember(a, 2, [{b,a,c}, {x,y,z}]).  % works on lists of tuples
+    > true
+
+    lists:keysearch(a, 2, [{b,a,c}, {x,y,z}]).  % the same of keymember with tuple return
+    > {value,{b,a,c}}
+    
+    lists:keydelete(a, 2, [{p, p}, {b,a,c}, {x,y,z}]).
+    >[{p,p},{x,y,z}]
+```
+
 * **map** (dictionary)
     * assign with => `Dst = #{ "key" => 42 }.`
     * update with := `Dst#{red := 1, green := 2, ... }; ` 
@@ -144,6 +157,13 @@ new(R,G,B,A) when ?is_channel(R) -> ...
 * `~p`
 * `~n` new line
 
+```{erl}
+is_atom(io:format("text ~p ~p", [atom, "string"])).
+> text atom "string" true
+is_atom(io:format("text ~p ~p", [atom, list_to_atom("string")])).
+> text atom string true      
+```
+
 
 ### BIFs 
 
@@ -217,9 +237,11 @@ end.
 > **Register** used to send messages without knowing the PID
 
 ```{erl}
-    register(pong, spawn(tut16, pong, [])).
+    register(pong, spawn(?MODULE, pong, [])).
     ...
     pong ! finished.
+
+    whereis(pong).      % {undefined, _}
 ```
 
 <br/>
